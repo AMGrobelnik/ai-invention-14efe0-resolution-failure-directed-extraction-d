@@ -1,0 +1,15 @@
+{
+  "title": "FOL Reasoning Benchmarks: FOLIO, ProofWriter, RuleTaker (11,001 examples)",
+  "layman_summary": "Three logical reasoning benchmarks (FOLIO, ProofWriter, RuleTaker) with 11,001 examples standardized into a unified format for evaluating a system that converts natural language into formal logic for automated reasoning.",
+  "summary": "Three benchmark datasets (11,001 total examples) standardized to the exp_sel_data_out schema for evaluating a neuro-symbolic pipeline that converts natural language text to first-order logic (FOL) representations for Prolog-based reasoning.\n\n**Selected datasets:**\n\n1. **FOLIO** (1,001 examples, tasksource/folio): Expert-written NL premises with explicit FOL annotations (∀x, ∃, →, ¬ quantifiers). Gold FOL provided for both premises and conclusions via `metadata_premises_fol` and `metadata_conclusion_fol`. Labels: True/False/Unknown. Directly trains and evaluates text→FOL translation quality. EMNLP 2024.\n\n2. **ProofWriter** (5,000 examples, tasksource/proofwriter, capped from 395,624): NL theories (facts + rules) with structured proof trees and True/False/Unknown entailment labels. Multi-hop depth tracked via `metadata_hop_depth` (QDep field). Gold proofs in `metadata_proof`. Tests whether generated FOL + Prolog reasoning matches ground-truth inference. ACL Findings 2021 (AllenAI).\n\n3. **RuleTaker** (5,000 examples, tasksource/ruletaker, capped from 433,992): Depth-graded logical entailment (depth-1 through depth-5). Context provides NL rules and facts; query is an assertion to entail or refute. Labels: entailment/not entailment. `metadata_hop_depth` encodes required reasoning steps. IJCAI 2020 (AllenAI).\n\n**Schema fields per example:** `input` (NL text with query), `output` (label/answer), `metadata_*` keys for FOL annotations, proof depth, proof trees, and task type.\n\n**Source files:** All downloaded from HuggingFace Hub via aii-hf-datasets skill. Original files in `temp/datasets/`. Processing script `data.py` handles both JSON array and JSONL-in-array formats. Validation passed against `exp_sel_data_out` schema.",
+  "out_expected_files": {
+    "script": "data.py",
+    "datasets": [
+      {
+        "full": ["full_data_out.json"],
+        "mini": "mini_data_out.json",
+        "preview": "preview_data_out.json"
+      }
+    ]
+  }
+}

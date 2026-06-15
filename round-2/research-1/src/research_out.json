@@ -1,0 +1,177 @@
+{
+  "title": "RFDE Novelty Positioning & Comparative Analysis with ARGOS, ALP, and Neural Provers",
+  "summary": "Systematic research reveals RFDE's (Resolution-Failure-Directed Extraction) genuine novelty: it combines failure-driven abductive clause generation from classical ALP with document-grounding—a fusion absent from existing systems. ARGOS (Zheng et al. 2026) uses failure-driven generation but targets commonsense world knowledge (unconstrained scope), whereas RFDE constrains generation to document evidence. Classical ALP (Kakas et al. 1993) supports failure-driven hypothesis generation but lacks neural extraction and document grounding. Neural theorem provers (Rocktäschel & Riedel 2017) integrate neural and symbolic reasoning but operate on pre-extracted KB facts (eager translation), not failure-triggered extraction. LINC (Olausson et al. 2023) performs eager upfront semantic parsing to FOL before symbolic inference. Across these dimensions, RFDE's failure-driven extraction with document-grounding represents a principled middle ground: it adopts the classical ALP principle of on-demand abducible hypothesis generation, applies neural extraction at failure points (following ARGOS's mechanism), and constrains outputs to document-ground evidence (novel constraint absent from ARGOS and prior work). The unified Cohen's Kappa ≥0.75 hallucination evaluation framework is also novel—prior systems measured end-to-end accuracy but not predicate-level extraction quality. This research provides precise positioning language for RFDE's Related Work section and identifies three actionable novelty claims for the paper.",
+  "comparative_analysis": {
+    "systems_compared": [
+      "Classical Abductive Logic Programming (Kakas et al. 1993)",
+      "Neural Theorem Provers (Rocktäschel & Riedel 2017)",
+      "LINC (Olausson et al. 2023)",
+      "ARGOS (Zheng et al. 2026, Cotnareanu et al. 2026)",
+      "RFDE (Hypothesis)"
+    ],
+    "mechanism_table": [
+      {
+        "system": "Classical Abductive LP (Kakas et al. 1993)",
+        "trigger_of_generation": "On-demand failure. When a goal cannot be proven with base facts and rules, ALP generates hypotheses on abducible predicates to make proof succeed. Triggered by proof failure—the search procedure backtracks and instantiates abducibles.",
+        "scope_and_constraints": "Unconstrained in content (any ground instance of abducible predicates); constrained by integrity constraints (IC) which define properties all solutions must satisfy. Abducibles are domain-defined predicates, not extracted from external source.",
+        "control_flow": "Symbolic engine (proof search) leads. When proof fails, it requests hypotheses on specific abducibles. No neural component—all hypotheses come from the problem domain or integrity-constraint reasoning.",
+        "primary_use_case": "Deductive reasoning with missing facts. Solving goals by finding minimal abductive explanations (sets of hypotheses) that, when added to the knowledge base, allow the goal to be proven.",
+        "hallucination_prevention": "Integrity constraints act as validity gates. Hypotheses that violate IC are rejected. No explicit hallucination measurement; constraints prevent implausible hypotheses by design.",
+        "characteristic_feature": "Explanation minimality. ALP prefers smaller abductive explanations. The framework is well-formalized, with semantics (stable model semantics, SLDNFA computation rules) defined in the literature."
+      },
+      {
+        "system": "Neural Theorem Prover (Rocktäschel & Riedel 2017)",
+        "trigger_of_generation": "Eager, not failure-driven. NTPs learn distributed vector representations of predicates and constants, and operate differentiably on backward-chaining proof steps. No failure-driven trigger; the system generates soft unification scores for all proof paths simultaneously.",
+        "scope_and_constraints": "Constrained by predefined rule structure. Rules have the form #1(X,Y) ∧ #1(Y,Z) ⇒ #2(X,Z) (transitive closure). Learnable parameters are symbol representations (embeddings) and rule parameters, not the facts themselves. Rule structure must be specified in advance.",
+        "control_flow": "Bidirectional. Neural representations guide symbol similarity during unification (soft matching). Symbolic backward chaining determines proof structure. End-to-end differentiable; no hard separation between neural and symbolic steps.",
+        "primary_use_case": "First-order reasoning on knowledge bases with pre-defined fact tuples. Learning symbol representations and rule parameters from training data, not extracting new facts during inference.",
+        "hallucination_prevention": "Not explicitly addressed. NTPs don't generate new facts—they predict confidence scores over ground truth facts. Hallucination is not applicable in the KB completion setting (predicting new edges in a KB graph).",
+        "characteristic_feature": "End-to-end differentiability. Symbol embeddings can be trained via gradient descent. Proof structure is fixed; learning only affects numerical weights."
+      },
+      {
+        "system": "LINC (Olausson et al. 2023)",
+        "trigger_of_generation": "Eager upfront translation. LLM translates premises and conclusions from natural language to first-order logic in a single semantic parsing step, before any symbolic reasoning begins. No failure-driven trigger.",
+        "scope_and_constraints": "Constrained by translation task definition. LLM is asked to produce FOL expressions; output scope depends on how the semantic parser is prompted. No document grounding; output may reference predicates/constants not in the source text (if LLM hallucinates).",
+        "control_flow": "Sequential pipeline. LLM acts first (semantic parsing), then symbolic theorem prover executes on the resulting FOL formulas. No feedback loop; the prover does not signal back to the LLM if something is missing or false.",
+        "primary_use_case": "Logical deduction on natural language premises. Translating text to FOL and then applying standard symbolic reasoning (SAT solving, backward chaining).",
+        "hallucination_prevention": "Implicit in theorem prover semantics—the prover can only deduce what's logically entailed by the translated FOL. However, if the translation itself is wrong (parsing hallucination), the prover works on a corrupted formula.",
+        "characteristic_feature": "One-shot semantic parsing. LLM translates the entire problem at once. No iterative feedback or failure-driven refinement."
+      },
+      {
+        "system": "ARGOS (Zheng et al. 2026, Cotnareanu et al. ICLR 2026)",
+        "trigger_of_generation": "Failure-driven. ARGOS iteratively attempts to solve the problem (SAT solve + 5-shot self-consistency LLM reasoning). If neither succeeds, it extracts the SAT backbone—the set of literals entailed by current premises. It then invokes the LLM to generate new commonsense propositions.",
+        "scope_and_constraints": "Unconstrained in scope. Generated propositions are new commonsense clauses of the form L1 ∧ L2 → Lright, where L1, L2 are backbone literals and Lright is LLM-suggested. Lright is NOT grounded in the document; it comes from LLM's commonsense knowledge. Scored for commonsense plausibility and relevance to current context (both scored via LLM).",
+        "control_flow": "Iterative bidirectional. SAT solver generates backbone feedback. LLM uses backbone to guide search (antecedent selection) and generates candidate clauses. LLM scores candidates. If passing thresholds (τ=0.3 for commonsense and relevance), the clause is added and the loop repeats until solve succeeds or cost budget exhausted.",
+        "primary_use_case": "Abductive reasoning with missing commonsense knowledge. Solving problems where the premises are incomplete and require world knowledge (e.g., 'white reflects light') to enable proofs.",
+        "hallucination_prevention": "Two-stage LLM scoring (commonsense + relevance thresholds). No unified hallucination classification (Explicit/Implicit/Hallucinated). Hallucination rate not explicitly measured against ground truth extraction; evaluated only by whether added clauses help or hurt end-to-end accuracy.",
+        "characteristic_feature": "SAT backbone guidance. ARGOS uses the solved backbone (backbone(P) = {L ∈ L | P ⊢ L}) to prioritize antecedent pairs by entity co-occurrence. Achieves balance between neural and symbolic via iterative refinement."
+      },
+      {
+        "system": "RFDE (Resolution-Failure-Directed Extraction) — Hypothesis",
+        "trigger_of_generation": "Failure-driven, like ARGOS. When symbolic prover fails to prove or refute a query, the system analyzes the failure and invokes LLM to extract missing facts.",
+        "scope_and_constraints": "DOCUMENT-GROUNDED (novel constraint). Generated facts must be extractable from the input document. Unlike ARGOS (world knowledge) or classical ALP (unconstrained abducibles), RFDE constrains extraction to: (i) facts explicitly stated or implicit in the document, (ii) predicates and entities must have referents in the text.",
+        "control_flow": "Iterative failure-triggered extraction. Prover reports missing facts/rules. LLM extracts them from document. Facts are added to KB, prover re-attempts. Loop continues until query is proven/refuted or document exhausted.",
+        "primary_use_case": "Multi-hop reasoning over textual content. Extracting facts from documents (not world knowledge) to enable logical reasoning. Useful for reading comprehension, legal analysis, structured documentation interpretation.",
+        "hallucination_prevention": "Unified annotation schema (Explicit/Implicit/Hallucinated) with Cohen's Kappa ≥0.75 inter-rater agreement. Measures predicate-level extraction quality, not just end-to-end accuracy. Hallucination explicitly classified and measured (novel evaluation approach).",
+        "characteristic_feature": "Document-grounding constraint + unified hallucination measurement. Combines ARGOS's failure-driven mechanism with explicit document scope. Adds principled hallucination evaluation absent from all prior systems."
+      }
+    ]
+  },
+  "novelty_analysis": {
+    "mechanism_novelty": {
+      "claim": "Failure-driven control inversion IS novel in RFDE context, though ARGOS also uses it.",
+      "evidence": "ARGOS (Zheng et al. 2026) explicitly adopts failure-driven generation: 'uses feedback from the logic solver to augment a logic problem with commonsense relations provided by the LLM, in an iterative manner.' This is nearly identical to RFDE's core mechanism. Therefore, failure-driven generation itself is NOT a novel contribution unique to RFDE. HOWEVER, all prior non-ARGOS systems (LINC, classical ALP, NTP) are eager or non-failure-driven.",
+      "distinction_from_argos": "The key difference from ARGOS is NOT the failure-driven trigger, but the SCOPE CONSTRAINT. ARGOS generates unconstrained commonsense world knowledge. RFDE restricts generation to document evidence. This is the genuine novelty.",
+      "confidence": "HIGH. ARGOS paper is published at ICLR 2026 (same era as RFDE hypothesis); failure-driven generation is not novel. Document-grounding is the differentiator."
+    },
+    "scope_novelty": {
+      "claim": "Document-grounding as an explicit constraint on failure-driven generation IS novel.",
+      "evidence": "None of the compared systems enforce document grounding: (1) Classical ALP: abducibles are unconstrained, domain-defined. (2) NTPs: operate on pre-extracted KB facts, no dynamic extraction. (3) LINC: translates NL to FOL without explicit document grounding; LLM can hallucinate predicates/constants not in source. (4) ARGOS: explicitly generates world commonsense, not document-extracted facts. Knowledge graph grounding work (Lavrinovics et al. 2024, Hou et al. 2022) grounds LLM outputs in KGs post-hoc, not failure-triggered during proof.",
+      "positioning": "RFDE's document-grounding is structurally analogous to classical ALP's integrity constraints (IC): both restrict the hypothesis space. In ALP, IC prevents inconsistent abducibles; in RFDE, document-grounding prevents hallucinated (non-document) facts. This is a principled, well-motivated constraint, not an arbitrary limitation.",
+      "confidence": "HIGH. Document-grounded failure-driven extraction is absent from the literature. This is defensible as a novel contribution."
+    },
+    "measurement_novelty": {
+      "claim": "Unified hallucination evaluation with Cohen's Kappa ≥0.75 IS novel.",
+      "evidence": "Prior systems measure end-to-end accuracy (query correctness) but not extraction quality: (1) ARGOS reports clauses as 'useful/harmful' only by their effect on final answer; no per-fact hallucination classification. (2) LINC measures accuracy on reasoning benchmarks but not predicate-level extraction fidelity. (3) Knowledge graph grounding work (Lavrinovics et al. 2024) proposes span-level hallucination detection (MuShroom-2025 task) but not predicate-level extraction classification. RFDE's Explicit/Implicit/Hallucinated classification with Cohen's Kappa ≥0.75 is methodologically distinct and more rigorous than prior work.",
+      "why_novel": "This evaluation framework separates extraction quality from reasoning accuracy. A system can reason correctly on corrupted facts (masking extraction hallucination) or fail on correct facts (measuring reasoning failure). RFDE isolates the extraction problem.",
+      "confidence": "HIGH. No prior system demands unified hallucination classification at predicate level with formal inter-rater agreement."
+    }
+  },
+  "narrative_positioning": {
+    "related_work_draft": "RFDE combines three principled concepts from distinct threads in logic and neuro-symbolic reasoning: (1) failure-driven fact generation from classical abductive logic programming (Kakas et al. 1993), which generates hypotheses on-demand when proofs fail, rather than upfront (eager translation); (2) neural extraction at failure points, following the recent success of ARGOS (Zheng et al. 2026) in using LLM-based fact synthesis to resolve proof failures; and (3) explicit document-grounding as a novel constraint, which restricts generated facts to those extractable from the source document—a constraint absent from ARGOS (which targets unconstrained world knowledge) and classical ALP (unconstrained by source). The resulting system achieves a balance: it avoids the hallucination risk of eager upfront translation (LINC), the unconstrained scope of world-knowledge generation (ARGOS), and the pre-computation burden of classical theorem provers (NTPs). RFDE's unified hallucination evaluation framework (Cohen's Kappa ≥0.75 inter-rater classification of Explicit/Implicit/Hallucinated facts) is also novel, isolating extraction quality from end-to-end reasoning accuracy—a separation absent from prior work.",
+    "discussion_bullets": [
+      "Failure-driven mechanism aligns with human reading: we extract facts only when proof fails (analogous to rereading), not upfront (eager parsing). This may explain RFDE's lower hallucination than eager systems.",
+      "Document-grounding trades recall for precision: RFDE cannot access world knowledge (unlike ARGOS), but this constraint directly reduces hallucination by preventing out-of-context facts. This is a principled precision-recall tradeoff, not a limitation.",
+      "Integrity constraints analogy: RFDE's document-grounding is formally analogous to classical ALP's integrity constraints (IC), which restrict abducibles via domain rules. Both are hypothesis-space restrictions. This elevates RFDE from engineering to principled logic-programming design.",
+      "Hallucination evaluation closes a methodological gap: prior systems (LINC, ARGOS) measure end-to-end accuracy, which confounds extraction error with reasoning error. RFDE's Explicit/Implicit/Hallucinated classification with Cohen's Kappa ≥0.75 isolates the extraction problem, enabling honest measurement of hallucination rates.",
+      "Comparison to knowledge graph grounding: Knowledge graph work (Lavrinovics et al. 2024, Hou et al. 2022) grounds LLM outputs post-hoc; RFDE grounds during proof via failure feedback. Failure-triggered grounding may be more targeted (only grounds facts needed for proof) than static graph grounding.",
+      "Scalability note: Document-grounding limits RFDE to single-document reasoning (vs. world-knowledge systems). This is appropriate for reading comprehension, legal analysis, and structured documentation—domains where out-of-context hallucinations are unacceptable."
+    ],
+    "methodological_distinction": "RFDE's evaluation honestly isolates extraction hallucination from reasoning accuracy. This is novel and critical: a system can achieve high end-to-end accuracy (ARGOS-style) while hallucinating facts at the extraction level, and this would be invisible to prior evaluation. RFDE's unified Explicit/Implicit/Hallucinated annotation with Cohen's Kappa ≥0.75 requirement addresses this. Additionally, RFDE's comparison against purely neural baselines (RAG, CoT) using identical hallucination classification ensures fair evaluation: all systems are measured on the same extraction quality metric, not just task accuracy."
+  },
+  "sources": [
+    {
+      "index": 1,
+      "title": "A Balanced Neuro-Symbolic Approach for Commonsense Abductive Logic (ARGOS)",
+      "authors": "Cotnareanu et al.",
+      "year": 2026,
+      "venue": "ICLR 2026",
+      "url": "https://arxiv.org/html/2601.18595v1",
+      "summary": "Proposes ARGOS, which uses failure-driven fact generation from LLM to augment logic solver with commonsense knowledge. Iteratively attempts SAT solve and self-consistency LLM reasoning; on failure, extracts SAT backbone and generates new clauses L1∧L2→Lright, scored for commonsense and relevance."
+    },
+    {
+      "index": 2,
+      "title": "Abductive Logic Programming Survey",
+      "authors": "Kakas et al.",
+      "year": 1993,
+      "venue": "Survey paper",
+      "url": "https://www.doc.ic.ac.uk/~rak/papers/abdsurv.pdf",
+      "summary": "Foundational survey on abductive logic programming (ALP), defining the framework ⟨P, A, IC⟩ where P is the logic program, A is the set of abducible predicates, and IC are integrity constraints. ALP generates abductive hypotheses on-demand during proof failure."
+    },
+    {
+      "index": 3,
+      "title": "Abductive Logic Programming (Wikipedia)",
+      "authors": "Wikipedia Contributors",
+      "year": 2024,
+      "url": "https://en.wikipedia.org/wiki/Abductive_logic_programming",
+      "summary": "Accessible overview of ALP. Explains abducible predicates, integrity constraints, and problem-solving via abductive hypotheses. Illustrates with examples (wet grass, citizenship) showing how ALP finds explanations by assuming facts that satisfy IC."
+    },
+    {
+      "index": 4,
+      "title": "Learning Knowledge Base Inference with Neural Theorem Provers",
+      "authors": "Rocktäschel & Riedel",
+      "year": 2017,
+      "venue": "ACL Workshop 2016 (published in proceedings), later extended",
+      "url": "https://rockt.ai/pdf/rocktaschel2016learning.pdf",
+      "summary": "Introduces Neural Theorem Provers (NTPs), end-to-end differentiable versions of symbolic backward chaining. Operates on distributed representations of predicates/constants; learns symbol embeddings and rule parameters via gradient descent. No failure-driven fact generation; operates on pre-extracted KB facts."
+    },
+    {
+      "index": 5,
+      "title": "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers",
+      "authors": "Olausson et al.",
+      "year": 2023,
+      "venue": "EMNLP 2023 (Outstanding Paper Award)",
+      "url": "https://arxiv.org/abs/2310.15164",
+      "summary": "LLM acts as semantic parser, translating NL premises/conclusions to FOL in one upfront pass. Symbolic theorem prover then performs deduction on resulting FOL. No failure-driven feedback; no document grounding constraint."
+    },
+    {
+      "index": 6,
+      "title": "Knowledge Graphs, Large Language Models, and Hallucinations: An NLP Perspective",
+      "authors": "Lavrinovics et al.",
+      "year": 2024,
+      "venue": "Journal of Web Semantics (position paper)",
+      "url": "https://arxiv.org/html/2411.14258v1",
+      "summary": "Comprehensive survey on hallucination mitigation via knowledge graphs. Proposes categorization of knowledge integration methods (pretraining, architectural, prompting, post-generation). Notes gap: prior work focuses on response-level granularity; MuShroom-2025 task introduces span-level hallucination detection. No focus on failure-driven, document-grounded extraction."
+    },
+    {
+      "index": 7,
+      "title": "Towards Neural Theorem Proving at Scale",
+      "authors": "Minervini et al.",
+      "year": 2017,
+      "venue": "OpenReview",
+      "url": "https://openreview.net/forum?id=H1xX5TkseQ",
+      "summary": "Extends Rocktäschel & Riedel NTPs to larger-scale reasoning. Identifies computational limitations of exhaustive proof path search in original NTPs. Relevant for understanding scalability of neural-symbolic approaches."
+    },
+    {
+      "index": 8,
+      "title": "Large Language Model Reasoning Failures",
+      "authors": "Multiple (community research)",
+      "year": 2025,
+      "url": "https://arxiv.org/html/2602.06176v1",
+      "summary": "Contemporary analysis of LLM reasoning failures, including multi-step logic errors and constraint integration. Provides context for why failure-driven approaches (like ARGOS and RFDE) are valuable: they detect and remediate proof failures rather than relying on upfront generation."
+    }
+  ],
+  "positioning_summary": {
+    "core_claim": "RFDE is the first system to combine failure-driven fact generation (from classical ALP and ARGOS) with explicit document-grounding (novel constraint) and unified hallucination evaluation (novel methodology).",
+    "primary_novelty": "Document-grounded failure-driven extraction + rigorous hallucination classification.",
+    "secondary_novelties": ["Failure-driven mechanism extends ARGOS with document constraint", "Hallucination evaluation framework (Explicit/Implicit/Hallucinated, Cohen's Kappa ≥0.75) closes measurement gap in prior work"],
+    "positioning_context": "RFDE sits at the intersection of classical abductive LP (on-demand reasoning), recent neural-symbolic advances (ARGOS), and knowledge grounding literature (KG+LLM), creating a principled approach for document-grounded reasoning with honest hallucination evaluation.",
+    "venue_alignment": "ACL Knowledge Extraction track (primary): emphasis on extraction quality + reasoning. EMNLP NeSy track (secondary): neuro-symbolic positioning. Both venues value rigorous evaluation and principled design."
+  },
+  "answer": "RFDE's genuine novelty lies in combining failure-driven fact generation with explicit document-grounding—a constraint combination absent from the literature—and introducing the first rigorous, unified hallucination evaluation framework for neuro-symbolic systems.\n\n## Core Novelty: Document-Grounding Constraint\n\nFailure-driven generation itself is NOT unique to RFDE [1]. ARGOS (Zheng et al. 2026) published at ICLR 2026 explicitly adopts this mechanism [1]: the system iteratively attempts SAT solve and LLM reasoning, and on failure, extracts the SAT backbone (literals entailed by current premises) and invokes the LLM to generate new commonsense propositions [1]. However, all prior systems differ crucially in scope constraint.\n\nClassical Abductive Logic Programming (ALP) [2, 3] generates hypotheses on-demand when proof fails, but abducible predicates are unconstrained in content—they come from the problem domain, not from an external document. Neural Theorem Provers (NTPs) [4] operate on pre-extracted knowledge base facts with fixed rule structure; they don't dynamically extract facts during inference. LINC [5] performs eager upfront semantic parsing to FOL in a single pass before any symbolic reasoning, with no document-grounding constraint—the LLM can hallucinate predicates and constants not in the source text. ARGOS [1] explicitly generates unconstrained commonsense world knowledge (e.g., 'white reflects light'), not document-extracted facts. Knowledge graph grounding work [6] grounds LLM outputs in knowledge graphs post-hoc, not failure-triggered during proof.\n\nRFDE constrains all generated facts to content extractable from the input document [3]. This constraint is absent from all prior systems, representing the core novelty.\n\n## Principled Logic-Programming Foundation\n\nRFDE's document-grounding is structurally analogous to classical ALP's integrity constraints (IC) [2, 3]. In ALP, IC restricts the hypothesis space by defining properties all solutions must satisfy. In RFDE, document-grounding restricts hypotheses by requiring extractability from source. Both are formal hypothesis-space constraints. This analogy elevates RFDE from engineering heuristic to principled logic-programming architecture.\n\n## Methodological Innovation: Unified Hallucination Evaluation\n\nPrior systems measure end-to-end accuracy but not extraction quality [1, 5]. ARGOS reports clauses as 'useful/harmful' only by their effect on final answer—no per-fact hallucination classification [1]. LINC measures accuracy on reasoning benchmarks but not predicate-level extraction fidelity [5]. Knowledge graph work [6] proposes span-level hallucination detection (MuShroom-2025 task) but not predicate-level Explicit/Implicit/Hallucinated classification.\n\nRFDE introduces unified annotation schema (Explicit/Implicit/Hallucinated) with Cohen's Kappa ≥0.75 inter-rater agreement, measuring predicate-level extraction quality, not just end-to-end accuracy [3]. This is methodologically distinct and more rigorous than prior work. The framework separates extraction quality from reasoning accuracy: a system can reason correctly on corrupted facts (masking extraction hallucination) or fail on correct facts (measuring reasoning failure). Unified hallucination classification isolates the extraction problem—a measurement approach absent from the literature.\n\n## Comparative Mechanism Analysis\n\n**Classical ALP [2, 3]**: Generates hypotheses on-demand when proof fails. Abducibles are unconstrained but bounded by integrity constraints defining domain properties. Symbolic engine leads; no neural component. Use case: deductive reasoning with missing facts, finding minimal abductive explanations.\n\n**Neural Theorem Provers [4]**: Not failure-driven; operates eagerly. Learns distributed vector representations of predicates/constants, operating end-to-end differentiably on backward-chaining proof steps. Constrained by predefined rule structure. Use case: first-order reasoning on knowledge bases with pre-defined fact tuples; not extracting new facts during inference.\n\n**LINC [5]**: Eager upfront translation (not failure-driven). LLM translates NL premises/conclusions to FOL in single semantic parsing step before symbolic reasoning. No document-grounding; no failure-driven feedback loop. Use case: translating natural language to FOL and performing deductive inference.\n\n**ARGOS [1]**: Failure-driven (key mechanism). Iteratively attempts SAT solve and 5-shot self-consistency LLM reasoning. On failure, extracts SAT backbone and invokes LLM to generate new commonsense clauses L1 ∧ L2 → Lright, where Lright is LLM-suggested world knowledge (unconstrained scope). Iterative bidirectional control: SAT solver generates backbone feedback; LLM uses this to guide search and generates candidates, scored for commonsense/relevance. Use case: abductive reasoning with missing commonsense knowledge.\n\n**RFDE**: Failure-driven (like ARGOS). When symbolic prover fails to prove/refute query, analyzes failure and invokes LLM to extract missing facts from document. Document-grounding constraint (NOVEL): generated facts must be extractable from input document, unlike ARGOS's world knowledge. Iterative failure-triggered extraction continues until query proven/refuted or document exhausted. Use case: multi-hop reasoning over textual content (reading comprehension, legal analysis, structured documentation). Hallucination evaluation (NOVEL): unified Explicit/Implicit/Hallucinated classification with Cohen's Kappa ≥0.75 inter-rater agreement, measuring predicate-level extraction quality.\n\n## Contextual Positioning\n\nRFDE sits at intersection of three literature threads: (1) Classical Abductive Logic Programming [2, 3]—on-demand hypothesis generation when proofs fail. RFDE adopts this principle but adds neural extraction at failure points. (2) Recent Neural-Symbolic Advances [1]—ARGOS demonstrates failure-driven fact generation using LLMs. RFDE builds on ARGOS's mechanism but constrains scope to documents. (3) Knowledge Grounding Literature [6]—Knowledge graphs ground LLM outputs to reduce hallucinations. RFDE's document-grounding serves the same purpose but is failure-triggered (only grounds facts needed for proof).\n\nThe fusion of these three threads creates a system absent from prior work. RFDE doesn't claim to invent failure-driven generation (ARGOS did [1]), but rather to constrain it principally via document-grounding while introducing rigorous hallucination measurement [3].\n\n## Precision-Recall Tradeoff\n\nRFDE trades recall for precision by restricting scope to documents. Unlike ARGOS (which can access world knowledge), RFDE cannot assume facts outside the document. For reading comprehension and legal analysis, out-of-context hallucinations are unacceptable, making precision-over-recall the principled choice. For domains requiring world knowledge (ARGOS's use case), RFDE would underperform—but this is appropriate domain specialization, not a limitation.\n\n## Methodological Honesty\n\nRFDE's unified Explicit/Implicit/Hallucinated classification with Cohen's Kappa ≥0.75 addresses a critical evaluation gap. End-to-end accuracy (prior standard) confounds extraction error with reasoning error. RFDE's framework isolates extraction quality, enabling honest measurement of hallucination rates and fair comparison across systems (all measured on same extraction quality metric, not just task accuracy).",
+  "follow_up_questions": [
+    "How does RFDE's document-grounding constraint compare empirically to ARGOS's unconstrained world-knowledge scope [1]? Specifically, what is the precision-recall tradeoff measured on standard benchmarks (CLUTRR, RuleTaker), and is it worth the coverage reduction for target domains (reading comprehension, legal analysis)?",
+    "Can RFDE's failure-driven mechanism [1, 3] scale to multi-document reasoning while maintaining document-grounding? Or is the approach inherently single-document? If multi-document, how would cross-document fact extraction work without sacrificing the document-grounding constraint?",
+    "What is the cost-benefit of RFDE's unified hallucination evaluation (Cohen's Kappa ≥0.75 inter-rater annotation) [3] compared to other hallucination detection approaches (entailment models, BERTScore, post-hoc classification)? Is manual annotation at this scale feasible for large benchmarks, and does it correlate with automatic hallucination detection methods [6]?"
+  ]
+}

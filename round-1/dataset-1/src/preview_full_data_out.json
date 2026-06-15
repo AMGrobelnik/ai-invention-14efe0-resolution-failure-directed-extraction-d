@@ -1,0 +1,103 @@
+{
+  "datasets": [
+    {
+      "dataset": "RuleTaker",
+      "examples": [
+        {
+          "input": "Context: Anne is quiet. Anne is not young. Bob is kind. Bob is young. Dave is rough. Dave is round. Dave is smart. Dave is not young. Fiona is quiet. Fiona is not round. Kind, young things are not sma...",
+          "output": "entailment",
+          "metadata_config": "depth-1",
+          "metadata_hop_depth": "1",
+          "metadata_task_type": "logical_entailment"
+        },
+        {
+          "input": "Context: Anne is quiet. Anne is not young. Bob is kind. Bob is young. Dave is rough. Dave is round. Dave is smart. Dave is not young. Fiona is quiet. Fiona is not round. Kind, young things are not sma...",
+          "output": "not entailment",
+          "metadata_config": "depth-1",
+          "metadata_hop_depth": "1",
+          "metadata_task_type": "logical_entailment"
+        },
+        {
+          "input": "Context: Anne is quiet. Anne is not young. Bob is kind. Bob is young. Dave is rough. Dave is round. Dave is smart. Dave is not young. Fiona is quiet. Fiona is not round. Kind, young things are not sma...",
+          "output": "entailment",
+          "metadata_config": "depth-1",
+          "metadata_hop_depth": "1",
+          "metadata_task_type": "logical_entailment"
+        }
+      ]
+    },
+    {
+      "dataset": "FOLIO",
+      "examples": [
+        {
+          "input": "Premises:\nAll people who regularly drink coffee are dependent on caffeine.\nPeople regularly drink coffee, or they don't want to be addicted to caffeine, or both.\nNo one who doesn't want to be addicted...",
+          "output": "True",
+          "metadata_story_id": "406",
+          "metadata_example_id": "1126",
+          "metadata_premises_fol": "∀x (DrinkRegularly(x, coffee) → IsDependentOn(x, caffeine))\n∀x (DrinkRegularly(x, coffee)  ∨ (¬WantToBeAddictedTo(x, caffeine)))\n∀x (¬WantToBeAddictedTo(x, caffeine) → ¬AwareThatDrug(x, caffeine))\n¬(S...",
+          "metadata_conclusion_fol": "¬WantToBeAddictedTo(rina, caffeine) ∨ (¬AwareThatDrug(rina, caffeine))",
+          "metadata_task_type": "fol_entailment"
+        },
+        {
+          "input": "Premises:\nAll people who regularly drink coffee are dependent on caffeine.\nPeople regularly drink coffee, or they don't want to be addicted to caffeine, or both.\nNo one who doesn't want to be addicted...",
+          "output": "True",
+          "metadata_story_id": "406",
+          "metadata_example_id": "1127",
+          "metadata_premises_fol": "∀x (DrinkRegularly(x, coffee) → IsDependentOn(x, caffeine))\n∀x (DrinkRegularly(x, coffee)  ∨ (¬WantToBeAddictedTo(x, caffeine)))\n∀x (¬WantToBeAddictedTo(x, caffeine) → ¬AwareThatDrug(x, caffeine))\n¬(S...",
+          "metadata_conclusion_fol": "¬WantToBeAddictedTo(rina, caffeine) ⊕ ¬AwareThatDrug(rina, caffeine)",
+          "metadata_task_type": "fol_entailment"
+        },
+        {
+          "input": "Premises:\nAll people who regularly drink coffee are dependent on caffeine.\nPeople regularly drink coffee, or they don't want to be addicted to caffeine, or both.\nNo one who doesn't want to be addicted...",
+          "output": "False",
+          "metadata_story_id": "406",
+          "metadata_example_id": "1128",
+          "metadata_premises_fol": "∀x (DrinkRegularly(x, coffee) → IsDependentOn(x, caffeine))\n∀x (DrinkRegularly(x, coffee)  ∨ (¬WantToBeAddictedTo(x, caffeine)))\n∀x (¬WantToBeAddictedTo(x, caffeine) → ¬AwareThatDrug(x, caffeine))\n¬(S...",
+          "metadata_conclusion_fol": "DrinkRegularly(rina, coffee)  ⊕ IsUnawareThatCaffeineIsADrug(rina)",
+          "metadata_task_type": "fol_entailment"
+        }
+      ]
+    },
+    {
+      "dataset": "ProofWriter",
+      "examples": [
+        {
+          "input": "Theory:\nGary is furry. Gary is nice. Gary is red. Gary is rough. Gary is not smart. Gary is white. Gary is young. If Gary is nice and Gary is not white then Gary is red. If someone is white then they ...",
+          "output": "True",
+          "metadata_id": "AttNeg-OWA-D0-4611",
+          "metadata_hop_depth": "0",
+          "metadata_max_depth": "0",
+          "metadata_n_facts": "7",
+          "metadata_n_rules": "8",
+          "metadata_config": "depth-0",
+          "metadata_proof": "@0: Gary is furry.[(triple1 OR ((triple7) -> rule3))] Gary is nice.[(triple2)] Gary is not smart.[(triple5 OR ((triple6) -> rule7))] Gary is red.[(triple3 OR ((triple6) -> rule2))] Gary is rough.[(tri...",
+          "metadata_task_type": "logical_proof"
+        },
+        {
+          "input": "Theory:\nGary is furry. Gary is nice. Gary is red. Gary is rough. Gary is not smart. Gary is white. Gary is young. If Gary is nice and Gary is not white then Gary is red. If someone is white then they ...",
+          "output": "False",
+          "metadata_id": "AttNeg-OWA-D0-4611",
+          "metadata_hop_depth": "0",
+          "metadata_max_depth": "0",
+          "metadata_n_facts": "7",
+          "metadata_n_rules": "8",
+          "metadata_config": "depth-0",
+          "metadata_proof": "@0: Gary is furry.[(triple1 OR ((triple7) -> rule3))] Gary is nice.[(triple2)] Gary is not smart.[(triple5 OR ((triple6) -> rule7))] Gary is red.[(triple3 OR ((triple6) -> rule2))] Gary is rough.[(tri...",
+          "metadata_task_type": "logical_proof"
+        },
+        {
+          "input": "Theory:\nBob is furry. Dave is quiet. Harry is big. Rough things are white. All rough things are white. If Dave is rough then Dave is green.\n\nQuery: Bob is furry.\nIs this True, False, or Unknown?",
+          "output": "True",
+          "metadata_id": "AttNoneg-OWA-D0-3321",
+          "metadata_hop_depth": "0",
+          "metadata_max_depth": "0",
+          "metadata_n_facts": "3",
+          "metadata_n_rules": "3",
+          "metadata_config": "depth-0",
+          "metadata_proof": "@0: Bob is furry.[(triple1)] Dave is quiet.[(triple2)] Harry is big.[(triple3)]",
+          "metadata_task_type": "logical_proof"
+        }
+      ]
+    }
+  ]
+}

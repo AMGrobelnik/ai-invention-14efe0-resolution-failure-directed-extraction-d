@@ -1,0 +1,15 @@
+{"ts": 1781532949.5894618, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "LAMBADA backward chaining reasoning Kazemi ACL 2023", "count": 10}
+{"ts": 1781532949.9491227, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "ARGOS abductive reasoning commonsense 2026", "count": 10}
+{"ts": 1781532950.3632963, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "LINC neuro-symbolic reasoning FOL translation Olausson 2023", "count": 10}
+{"ts": 1781532950.4763193, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "Logic-LM self-refinement FOL Pan EMNLP 2023", "count": 10}
+{"ts": 1781532952.4347878, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "HBLR hybrid backward logical reasoning 2026", "count": 10}
+{"ts": 1781532978.9511385, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "ProofWriter proof generation entailment benchmark", "count": 10}
+{"ts": 1781532979.0231159, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "CLUTRR multi-hop reasoning kinship benchmark", "count": 10}
+{"ts": 1781532979.1906893, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "FOLIO first-order logic benchmark FOL inference", "count": 10}
+{"ts": 1781532979.31232, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "RuleTaker benchmark deductive reasoning depth", "count": 10}
+{"ts": 1781532985.3871996, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "PySwip meta-interpreter SWI-Prolog dynamic assertion", "count": 10}
+{"ts": 1781532985.8578453, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "annotation schema predicate extraction inter-annotator agreement Cohen kappa", "count": 10}
+{"ts": 1781532985.8738768, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "confidence scoring probabilistic reasoning LLM self-consistency", "count": 10}
+{"ts": 1781532985.9149885, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "hallucination detection LLM unsupported facts measurement", "count": 9}
+{"ts": 1781533005.1868606, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "neuro-symbolic evaluation metrics precision recall hallucination rate benchmark", "count": 10}
+{"ts": 1781533005.6852975, "tool": "aii_web_tools__search", "cost_usd": 0.001, "query": "ProbLog probabilistic logic programming confidence scores truth", "count": 10}

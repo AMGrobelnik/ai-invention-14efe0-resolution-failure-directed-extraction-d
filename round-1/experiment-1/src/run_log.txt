@@ -1,0 +1,156 @@
+[92m16:31:53[0m|INFO   |[96mmain[0m| === RFDE Experiment Starting ===
+[92m16:31:53[0m|INFO   |[96mmain[0m| Model: meta-llama/llama-4-scout | Budget: $8.0
+[92m16:31:53[0m|INFO   |[96mmain[0m| Total tasks: 18 (synthetic=8, ruletaker=5, clutrr=5)
+[92m16:31:53[0m|INFO   |[96mmain[0m| [1/18] Task syn_01 | synthetic | 2-hop
+[92m16:31:53[0m|INFO   |[96mmain[0m|   Doc: Alice is the mother of Bob. Bob is the father of Charlie....
+[92m16:31:53[0m|INFO   |[96mmain[0m|   Query: Who is Charlie's grandmother?
+[92m16:31:53[0m|INFO   |[96mmain[0m|   Budget used: $0.0000
+[92m16:31:59[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=3 halluc=0.00
+[92m16:32:06[0m|INFO   |[96mmain[0m|   COT: correct=False cost=$0.00005
+[92m16:32:08[0m|INFO   |[96mmain[0m|   RAG: correct=False cost=$0.00002
+[92m16:32:14[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:32:14[0m|INFO   |[96mmain[0m| [2/18] Task syn_02 | synthetic | 2-hop
+[92m16:32:14[0m|INFO   |[96mmain[0m|   Doc: Mary is the mother of John. John is the father of Emma. John is the father of Li...
+[92m16:32:14[0m|INFO   |[96mmain[0m|   Query: Is Mary a grandparent of Emma?
+[92m16:32:14[0m|INFO   |[96mmain[0m|   Budget used: $0.0002
+[92m16:32:24[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=4 halluc=0.00
+[92m16:32:28[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00004
+[92m16:32:31[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00004
+[92m16:32:33[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:32:33[0m|INFO   |[96mmain[0m| [3/18] Task syn_03 | synthetic | 2-hop
+[92m16:32:33[0m|INFO   |[96mmain[0m|   Doc: George is the father of Helen. Helen is the mother of Peter....
+[92m16:32:33[0m|INFO   |[96mmain[0m|   Query: Is George an ancestor of Peter?
+[92m16:32:33[0m|INFO   |[96mmain[0m|   Budget used: $0.0004
+[92m16:33:04[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=11 halluc=0.00
+[92m16:33:13[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00007
+[92m16:33:16[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00003
+[92m16:33:18[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:33:18[0m|INFO   |[96mmain[0m| [4/18] Task syn_04 | synthetic | 1-hop
+[92m16:33:18[0m|INFO   |[96mmain[0m|   Doc: The ball is red. Red objects are not cheap. Cheap objects cost very little....
+[92m16:33:18[0m|INFO   |[96mmain[0m|   Query: Is the ball cheap?
+[92m16:33:18[0m|INFO   |[96mmain[0m|   Budget used: $0.0010
+[92m16:33:21[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=1 halluc=0.00
+[92m16:33:25[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00005
+[92m16:33:26[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00003
+[92m16:33:34[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00005
+[92m16:33:34[0m|INFO   |[96mmain[0m| [5/18] Task syn_05 | synthetic | 1-hop
+[92m16:33:34[0m|INFO   |[96mmain[0m|   Doc: Dr. Smith works at City Hospital. City Hospital is located in Boston....
+[92m16:33:34[0m|INFO   |[96mmain[0m|   Query: Does Dr. Smith work at City Hospital?
+[92m16:33:34[0m|INFO   |[96mmain[0m|   Budget used: $0.0012
+[92m16:33:36[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=1 halluc=0.00
+[92m16:33:38[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00003
+[92m16:33:39[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00001
+[92m16:33:43[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:33:43[0m|INFO   |[96mmain[0m| [6/18] Task syn_06 | synthetic | 2-hop
+[92m16:33:43[0m|INFO   |[96mmain[0m|   Doc: Susan is the sister of Tom. Tom is the father of Lucy....
+[92m16:33:43[0m|INFO   |[96mmain[0m|   Query: Is Susan the aunt of Lucy?
+[92m16:33:43[0m|INFO   |[96mmain[0m|   Budget used: $0.0013
+[92m16:33:47[0m|INFO   |[96mmain[0m|   RFDE: correct=False calls=1 halluc=0.00
+[92m16:33:50[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00004
+[92m16:33:57[0m|INFO   |[96mmain[0m|   RAG: correct=False cost=$0.00005
+[92m16:34:04[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00004
+[92m16:34:04[0m|INFO   |[96mmain[0m| [7/18] Task syn_07 | synthetic | 1-hop
+[92m16:34:04[0m|INFO   |[96mmain[0m|   Doc: The sky is blue. The ocean reflects the sky's color....
+[92m16:34:04[0m|INFO   |[96mmain[0m|   Query: Is the ocean blue?
+[92m16:34:04[0m|INFO   |[96mmain[0m|   Budget used: $0.0016
+[92m16:34:07[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=1 halluc=0.00
+[92m16:34:14[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00006
+[92m16:34:15[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00001
+[92m16:34:23[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00003
+[92m16:34:23[0m|INFO   |[96mmain[0m| [8/18] Task syn_08 | synthetic | 3-hop
+[92m16:34:23[0m|INFO   |[96mmain[0m|   Doc: Carol is the mother of David. David is the father of Eve. Eve is the mother of F...
+[92m16:34:23[0m|INFO   |[96mmain[0m|   Query: Is Carol an ancestor of Frank?
+[92m16:34:23[0m|INFO   |[96mmain[0m|   Budget used: $0.0017
+[92m16:34:52[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=15 halluc=0.00
+[92m16:34:53[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00006
+[92m16:34:59[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00004
+[92m16:35:04[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:35:04[0m|INFO   |[96mmain[0m| [9/18] Task rt_01 | ruletaker | 4-hop
+[92m16:35:04[0m|INFO   |[96mmain[0m|   Doc: Anne is kind. Kind people are happy. Happy people are nice. Nice people are help...
+[92m16:35:04[0m|INFO   |[96mmain[0m|   Query: Is Anne helpful?
+[92m16:35:04[0m|INFO   |[96mmain[0m|   Budget used: $0.0024
+[92m16:35:05[0m|INFO   |[96mmain[0m|   RFDE: correct=False calls=1 halluc=0.00
+[92m16:35:07[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00004
+[92m16:35:10[0m|INFO   |[96mmain[0m|   RAG: correct=False cost=$0.00005
+[92m16:35:13[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:35:13[0m|INFO   |[96mmain[0m| [10/18] Task rt_02 | ruletaker | 3-hop
+[92m16:35:13[0m|INFO   |[96mmain[0m|   Doc: All mammals are warm-blooded. Dogs are mammals. Warm-blooded animals need food r...
+[92m16:35:13[0m|INFO   |[96mmain[0m|   Query: Do dogs need food regularly?
+[92m16:35:13[0m|INFO   |[96mmain[0m|   Budget used: $0.0026
+[92m16:35:16[0m|INFO   |[96mmain[0m|   RFDE: correct=False calls=1 halluc=0.00
+[92m16:35:22[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00006
+[92m16:35:26[0m|INFO   |[96mmain[0m|   RAG: correct=False cost=$0.00004
+[92m16:35:39[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00011
+[92m16:35:39[0m|INFO   |[96mmain[0m| [11/18] Task rt_03 | ruletaker | 2-hop
+[92m16:35:39[0m|INFO   |[96mmain[0m|   Doc: If something is red, it is not blue. The apple is red....
+[92m16:35:39[0m|INFO   |[96mmain[0m|   Query: Is the apple blue?
+[92m16:35:39[0m|INFO   |[96mmain[0m|   Budget used: $0.0030
+[92m16:35:43[0m|INFO   |[96mmain[0m|   RFDE: correct=False calls=1 halluc=0.00
+[92m16:35:46[0m|INFO   |[96mmain[0m|   COT: correct=False cost=$0.00005
+[92m16:35:49[0m|INFO   |[96mmain[0m|   RAG: correct=False cost=$0.00006
+[92m16:35:58[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00005
+[92m16:35:58[0m|INFO   |[96mmain[0m| [12/18] Task rt_04 | ruletaker | 2-hop
+[92m16:35:58[0m|INFO   |[96mmain[0m|   Doc: Alice is a scientist. Scientists are smart. Smart people often publish papers....
+[92m16:35:58[0m|INFO   |[96mmain[0m|   Query: Is Alice smart?
+[92m16:35:58[0m|INFO   |[96mmain[0m|   Budget used: $0.0032
+[92m16:36:00[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=1 halluc=0.00
+[92m16:36:02[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00003
+[92m16:36:03[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00001
+[92m16:36:17[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00013
+[92m16:36:17[0m|INFO   |[96mmain[0m| [13/18] Task rt_05 | ruletaker | 1-hop
+[92m16:36:17[0m|INFO   |[96mmain[0m|   Doc: Bob is an engineer. Engineers are not artists. Artists are creative. Bob is not ...
+[92m16:36:17[0m|INFO   |[96mmain[0m|   Query: Is Bob an artist?
+[92m16:36:17[0m|INFO   |[96mmain[0m|   Budget used: $0.0034
+[92m16:36:18[0m|INFO   |[96mmain[0m|   RFDE: correct=False calls=1 halluc=0.00
+[92m16:36:19[0m|INFO   |[96mmain[0m|   COT: correct=False cost=$0.00004
+[92m16:36:21[0m|INFO   |[96mmain[0m|   RAG: correct=False cost=$0.00002
+[92m16:36:29[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00006
+[92m16:36:29[0m|INFO   |[96mmain[0m| [14/18] Task cl_01 | clutrr | 2-hop
+[92m16:36:29[0m|INFO   |[96mmain[0m|   Doc: Sarah's mother is Linda. Linda's father is Robert. Robert's wife is Margaret....
+[92m16:36:29[0m|INFO   |[96mmain[0m|   Query: What is Robert's relationship to Sarah?
+[92m16:36:29[0m|INFO   |[96mmain[0m|   Budget used: $0.0037
+[92m16:36:33[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=3 halluc=0.00
+[92m16:36:34[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00004
+[92m16:36:40[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00006
+[92m16:36:50[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00003
+[92m16:36:50[0m|INFO   |[96mmain[0m| [15/18] Task cl_02 | clutrr | 2-hop
+[92m16:36:50[0m|INFO   |[96mmain[0m|   Doc: Tom's father is James. James has a sister named Kate. Kate has a son named Mike....
+[92m16:36:50[0m|INFO   |[96mmain[0m|   Query: Is Kate Tom's aunt?
+[92m16:36:50[0m|INFO   |[96mmain[0m|   Budget used: $0.0040
+[92m16:36:54[0m|INFO   |[96mmain[0m|   RFDE: correct=False calls=1 halluc=0.00
+[92m16:36:57[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00004
+[92m16:36:58[0m|INFO   |[96mmain[0m|   RAG: correct=False cost=$0.00003
+[92m16:37:02[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00003
+[92m16:37:02[0m|INFO   |[96mmain[0m| [16/18] Task cl_03 | clutrr | 3-hop
+[92m16:37:02[0m|INFO   |[96mmain[0m|   Doc: Mia's mother is Anna. Anna's mother is Grace. Grace's mother is Helen....
+[92m16:37:02[0m|INFO   |[96mmain[0m|   Query: Is Helen an ancestor of Mia?
+[92m16:37:02[0m|INFO   |[96mmain[0m|   Budget used: $0.0042
+[92m16:37:41[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=15 halluc=0.00
+[92m16:37:42[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00004
+[92m16:37:45[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00004
+[92m16:37:53[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:37:53[0m|INFO   |[96mmain[0m| [17/18] Task cl_04 | clutrr | 2-hop
+[92m16:37:53[0m|INFO   |[96mmain[0m|   Doc: Paul is the brother of Lisa. Lisa is the mother of Kevin. Kevin is the father of...
+[92m16:37:53[0m|INFO   |[96mmain[0m|   Query: Is Paul the uncle of Kevin?
+[92m16:37:53[0m|INFO   |[96mmain[0m|   Budget used: $0.0049
+[92m16:38:03[0m|INFO   |[96mmain[0m|   RFDE: correct=False calls=3 halluc=0.00
+[92m16:38:05[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00004
+[92m16:38:06[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00004
+[92m16:38:11[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00002
+[92m16:38:11[0m|INFO   |[96mmain[0m| [18/18] Task cl_05 | clutrr | 1-hop
+[92m16:38:11[0m|INFO   |[96mmain[0m|   Doc: Elena's father is Victor. Victor's father is Igor. Igor's wife is Natasha....
+[92m16:38:11[0m|INFO   |[96mmain[0m|   Query: Is Victor Elena's father?
+[92m16:38:11[0m|INFO   |[96mmain[0m|   Budget used: $0.0051
+[92m16:38:12[0m|INFO   |[96mmain[0m|   RFDE: correct=True calls=1 halluc=0.00
+[92m16:38:14[0m|INFO   |[96mmain[0m|   COT: correct=True cost=$0.00002
+[92m16:38:17[0m|INFO   |[96mmain[0m|   RAG: correct=True cost=$0.00004
+[92m16:38:29[0m|INFO   |[96mmain[0m|   EAGER_FOL: correct=False cost=$0.00006
+[92m16:38:29[0m|INFO   |[96mmain[0m| === Computing aggregate metrics ===
+[92m16:38:29[0m|INFO   |[96mmain[0m|   FINDING: RFDE accuracy: 61.1% vs CoT: 83.3%
+[92m16:38:29[0m|INFO   |[96mmain[0m|   FINDING: Hallucination reduction vs CoT: 100.0%
+[92m16:38:29[0m|INFO   |[96mmain[0m|   FINDING: RFDE avg LLM calls/task: 3.6
+[92m16:38:29[0m|INFO   |[96mmain[0m|   FINDING: Total cost: $0.0053 for 137 LLM calls
+[92m16:38:29[0m|INFO   |[96mmain[0m|   FINDING: Tasks completed: 18/18
+[92m16:38:29[0m|INFO   |[96mmain[0m| Saved method_out.json (384.7 KB)
+[92m16:38:29[0m|INFO   |[96mmain[0m| Total LLM cost: $0.0053 (137 calls)
+[92m16:38:29[0m|INFO   |[96mmain[0m| === RFDE Experiment Complete ===
