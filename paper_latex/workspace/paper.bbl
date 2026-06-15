@@ -1,0 +1,99 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Clark et~al.(2020)Clark, Tafjord, and Richardson]{Clark2020}
+Peter Clark, Oyvind Tafjord, and Kyle Richardson.
+\newblock Transformers as soft reasoners over language.
+\newblock In \emph{Proceedings of the 29th International Joint Conference on
+  Artificial Intelligence}, pages 3882--3890, 2020.
+\newblock \doi{10.24963/ijcai.2020/537}.
+
+\bibitem[Han et~al.(2022)Han, Schoelkopf, Zhao, Qi, Riddell, Benson, Sun,
+  Zubova, Qiao, Burtell, Peng, Fan, Liu, Wong, Sailor, Ni, Nan, Kasai, Yu,
+  Zhang, Joty, Fabbri, Kryscinski, Lin, Xiong, and Radev]{Han2022}
+Simeng Han, Hailey Schoelkopf, Yilun Zhao, Zhenting Qi, Martin Riddell, Luke
+  Benson, Lucy Sun, Ekaterina Zubova, Yujie Qiao, Matthew Burtell, David Peng,
+  Jonathan Fan, Yixin Liu, Brian Wong, Malcolm Sailor, Ansong Ni, Linyong Nan,
+  Jungo Kasai, Tao Yu, Rui Zhang, Shafiq Joty, Alexander Fabbri, Wojciech
+  Kryscinski, Xi~Victoria Lin, Caiming Xiong, and Dragomir Radev.
+\newblock {FOLIO}: Natural language reasoning with first-order logic.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing}, 2022.
+\newblock \doi{10.48550/arXiv.2209.00840}.
+
+\bibitem[Kakas et~al.(1992)Kakas, Kowalski, and Toni]{Kakas1992}
+A.~C. Kakas, R.~A. Kowalski, and F.~Toni.
+\newblock Abductive logic programming.
+\newblock \emph{Journal of Logic and Computation}, 2\penalty0 (6):\penalty0
+  719--770, 1992.
+\newblock \doi{10.1093/logcom/2.6.719}.
+
+\bibitem[Kazemi et~al.(2023)Kazemi, Kim, Bhatia, Xu, and
+  Ramachandran]{Kazemi2023}
+Mehran Kazemi, Najoung Kim, Deepti Bhatia, Xin Xu, and Deepak Ramachandran.
+\newblock {LAMBADA}: Backward chaining for automated reasoning in natural
+  language.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics}, pages 6547--6568, 2023.
+\newblock \doi{10.48550/arXiv.2212.13894}.
+
+\bibitem[Li et~al.(2025)]{Li2025}
+Yifan Li et~al.
+\newblock {HBLR}: Hybrid backward logical reasoning with selective symbolic
+  translation.
+\newblock In \emph{Proceedings of the 39th AAAI Conference on Artificial
+  Intelligence}, 2025.
+
+\bibitem[Olausson et~al.(2023)Olausson, Gu, Lipkin, Zhang, Solar-Lezama,
+  Tenenbaum, and Levy]{Olausson2023}
+Theo~X. Olausson, Alex Gu, Benjamin Lipkin, Cedegao~E. Zhang, Armando
+  Solar-Lezama, Josh Tenenbaum, and Roger Levy.
+\newblock {LINC}: A neurosymbolic approach for logical reasoning by combining
+  language models with first-order logic provers.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 5153--5176, 2023.
+\newblock \doi{10.18653/v1/2023.emnlp-main.313}.
+
+\bibitem[Pan et~al.(2023)Pan, Albalak, Wang, and Wang]{Pan2023}
+Liangming Pan, Alon Albalak, Xinyi Wang, and William~Yang Wang.
+\newblock {Logic-LM}: Empowering large language models with symbolic solvers
+  for faithful logical reasoning.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, 2023.
+\newblock \doi{10.48550/arXiv.2305.12295}.
+
+\bibitem[Raedt et~al.(2007)Raedt, Kimmig, and Toivonen]{Raedt2007}
+Luc~De Raedt, Angelika Kimmig, and Hannu Toivonen.
+\newblock {ProbLog}: A probabilistic {Prolog} and its application in link
+  discovery.
+\newblock In \emph{Proceedings of the 20th International Joint Conference on
+  Artificial Intelligence}, pages 2468--2473, 2007.
+
+\bibitem[Sinha et~al.(2019)Sinha, Sodhani, Dong, Pineau, and
+  Hamilton]{Sinha2019}
+Koustuv Sinha, Shagun Sodhani, Jin Dong, Joelle Pineau, and William~L.
+  Hamilton.
+\newblock {CLUTRR}: A diagnostic benchmark for inductive reasoning from text.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing}, pages 4505--4514, 2019.
+\newblock \doi{10.18653/v1/D19-1458}.
+
+\bibitem[Tafjord et~al.(2021)Tafjord, Dalvi, and Clark]{Tafjord2021}
+Oyvind Tafjord, Bhavana Dalvi, and Peter Clark.
+\newblock {ProofWriter}: Generating implications, proofs, and abductive
+  statements over natural language.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL-IJCNLP 2021}, pages 3621--3634, 2021.
+\newblock \doi{10.18653/v1/2021.findings-acl.317}.
+
+\bibitem[Zheng et~al.(2024)]{Zheng2024}
+Zenan Zheng et~al.
+\newblock A balanced approach to neuro-symbolic abductive logic programming.
+\newblock In \emph{Proceedings of the 12th International Conference on Learning
+  Representations}, 2024.
+
+\end{thebibliography}

@@ -1,0 +1,15 @@
+{
+  "title": "RFDE: Resolution-Failure-Directed Extraction for Neuro-Symbolic Reasoning",
+  "summary": "Generated a 13-page publication-ready LaTeX paper titled 'Resolution-Failure-Directed Extraction: Demand-Driven Grounding for Neuro-Symbolic Text Reasoning'. The paper contains: Abstract, Introduction (Problem + Contribution + Summary of Contributions), Related Work (Eager Upfront FOL Translation, Failure-Driven Fact Generation, Backward Chaining, Benchmarks), Methods (Architecture Overview, SLD Resolution Engine, Proof-Failure-Driven Extraction, Confidence Propagation, Hallucination Classification Methodology), Experiments (Evaluation Setup, Results with Overall Metrics, Accuracy Breakdown, LLM Call Efficiency, Proof Trace Auditability), Discussion (Structural Hallucination Prevention, Accuracy-Hallucination Tradeoff, Measurement Asymmetry, Limitations), Conclusion, Acknowledgments, and References. All 4 figures included: fig1_v0.jpg (architecture diagram, figure* full-width), fig2_v0.jpg (accuracy-hallucination comparison, figure* full-width), fig3_v0.jpg (accuracy by dataset, figure* full-width), fig4_v0.jpg (LLM call efficiency and cost, single-column figure). BibTeX fetched via aii_semscholar_bib__fetch for 9 references; 2 manually authored (HBLR, ARGOS) as they are recent/unindexed. Compiled with pdflatex + bibtex (4-pass) producing paper.pdf (13 pages, ~5.4 MB). All pages visually reviewed at 150 DPI — no layout issues found.",
+  "out_expected_files": {
+    "paper_tex_path": "paper.tex",
+    "paper_pdf_path": "paper.pdf",
+    "references_bib_path": "references.bib",
+    "figure_paths": [
+      "figures/fig1_v0.jpg",
+      "figures/fig2_v0.jpg",
+      "figures/fig3_v0.jpg",
+      "figures/fig4_v0.jpg"
+    ]
+  }
+}
